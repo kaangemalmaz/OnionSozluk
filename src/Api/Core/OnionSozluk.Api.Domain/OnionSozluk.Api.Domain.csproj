@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
+    <ProjectReference Include="..\..\..\Common\OnionSozluk.Common\OnionSozluk.Common.csproj" />
   </ItemGroup>
 
 </Project>
