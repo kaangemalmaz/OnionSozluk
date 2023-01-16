@@ -18,6 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Core\OnionSozluk.Api.Application\OnionSozluk.Api.Application.csproj" />
     <ProjectReference Include="..\..\Core\OnionSozluk.Api.Domain\OnionSozluk.Api.Domain.csproj" />
   </ItemGroup>
 
