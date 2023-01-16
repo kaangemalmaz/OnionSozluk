@@ -12,6 +12,7 @@ namespace OnionSozluk.Infrastructure.Persistence.Repositories
 
         protected DbSet<TEntity> entity => dbContext.Set<TEntity>();
 
+        // birden fazla db kullanmak istenirse burayı istenildiği gibi dışardan onu geçerek kullanabiliriz.
         public GenericRepository(DbContext dbContext)
         {
             this.dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
