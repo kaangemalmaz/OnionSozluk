@@ -15,10 +15,22 @@ namespace OnionSozluk.Api.WebApi.Controllers
             _mediator = mediator;
         }
 
-
-        [HttpPost]
-        [Route("Login")]
+        [HttpPost("Login")]
         public async Task<IActionResult> Login([FromBody] LoginUserCommand request)
+        {
+            var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+        [HttpPost("Register")]
+        public async Task<IActionResult> Create([FromBody] CreateUserCommand request)
+        {
+            var result = await _mediator.Send(request);
+            return Ok(result);
+        }
+
+        [HttpPost("Update")]
+        public async Task<IActionResult> Update([FromBody] UpdateUserCommand request)
         {
             var result = await _mediator.Send(request);
             return Ok(result);
