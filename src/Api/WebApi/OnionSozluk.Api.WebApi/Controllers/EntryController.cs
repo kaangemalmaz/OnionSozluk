@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OnionSozluk.Api.Application.Features.Queries.GetEntries;
 using OnionSozluk.Common.ViewModels.RequestModels;
 
 namespace OnionSozluk.Api.WebApi.Controllers
@@ -32,6 +33,14 @@ namespace OnionSozluk.Api.WebApi.Controllers
 
             var result = await _mediator.Send(command);
 
+            return Ok(result);
+        }
+
+        [HttpGet("GetEntries")]
+        public async Task<IActionResult> GetEntries([FromQuery] GetEntriesQuery command)
+        {
+
+            var result = await _mediator.Send(command);
             return Ok(result);
         }
     }

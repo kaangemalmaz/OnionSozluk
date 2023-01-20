@@ -15,6 +15,8 @@ namespace OnionSozluk.Api.Application.Mapping
 
             CreateMap<CreateEntryCommand, Entry>().ReverseMap();
             CreateMap<CreateEntryCommentCommand, EntryComment>().ReverseMap();
+            CreateMap<Entry, GetEntriesViewModel>()
+                .ForMember(x => x.CommentCount, y => y.MapFrom(z => z.EntryComments.Count)); // commentcount alanını suna göre maple demektir.
 
         }
     }
