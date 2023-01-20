@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using OnionSozluk.Api.Application.Features.Commands.Entry.DeleteVote;
 using OnionSozluk.Api.Application.Features.Commands.EntryComment.DeleteVote;
