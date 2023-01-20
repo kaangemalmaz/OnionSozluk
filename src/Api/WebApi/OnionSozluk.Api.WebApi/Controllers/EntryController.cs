@@ -1,6 +1,8 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OnionSozluk.Api.Application.Features.Queries.GetEntries;
+using OnionSozluk.Api.Application.Features.Queries.GetMainPageEntries;
+using OnionSozluk.Common.ViewModels.Page;
 using OnionSozluk.Common.ViewModels.RequestModels;
 
 namespace OnionSozluk.Api.WebApi.Controllers
@@ -37,10 +39,18 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpGet("GetEntries")]
-        public async Task<IActionResult> GetEntries([FromQuery] GetEntriesQuery command)
+        public async Task<IActionResult> GetEntries([FromQuery] GetEntriesQuery query)
         {
 
-            var result = await _mediator.Send(command);
+            var result = await _mediator.Send(query);
+            return Ok(result);
+        }
+
+        [HttpGet("GetMainPageEntries")]
+        public async Task<IActionResult> GetMainPageEntries(int page, int pageSize)
+        {
+
+            var result = await _mediator.Send(new GetMainPageEntriesQuery(UserId, page, pageSize));
             return Ok(result);
         }
     }
