@@ -7,7 +7,10 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetEntryDetail
     {
         public Guid EntryId { get; set; }
         public Guid? UserId { get; set; }
+        public GetEntryDetailQuery()
+        {
 
+        }
         public GetEntryDetailQuery(Guid entryId, Guid? userId)
         {
             EntryId = entryId;

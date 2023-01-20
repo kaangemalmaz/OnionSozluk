@@ -4,6 +4,10 @@ namespace OnionSozluk.Common.ViewModels.RequestModels
 {
     public class CreateEntryVoteCommand : IRequest<bool>
     {
+        public CreateEntryVoteCommand()
+        {
+
+        }
         public CreateEntryVoteCommand(Guid entryId, VoteType voteType, Guid createdBy)
         {
             EntryId = entryId;

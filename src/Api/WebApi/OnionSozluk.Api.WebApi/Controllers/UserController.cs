@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OnionSozluk.Api.Application.Features.Queries.GetUserDetail;
 using OnionSozluk.Common.Events.User;
 using OnionSozluk.Common.ViewModels.RequestModels;
 
@@ -14,6 +15,20 @@ namespace OnionSozluk.Api.WebApi.Controllers
         public UserController(IMediator mediator)
         {
             _mediator = mediator;
+        }
+
+        [HttpGet("{id}")]
+        public async Task<IActionResult> GetUserDetailById([FromRoute] Guid id)
+        {
+            var result = await _mediator.Send(new GetUserDetailQuery { UserId = id });
+            return Ok(result);
+        }
+
+        [HttpGet("{username}")]
+        public async Task<IActionResult> GetUserDetailByUsername([FromRoute] string username)
+        {
+            var result = await _mediator.Send(new GetUserDetailQuery { UserId = Guid.Empty, UserName = username });
+            return Ok(result);
         }
 
         [HttpPost("Login")]
@@ -47,5 +62,8 @@ namespace OnionSozluk.Api.WebApi.Controllers
 
             return Ok(guid);
         }
+
+
+
     }
 }
