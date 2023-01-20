@@ -13,20 +13,24 @@ namespace OnionSozluk.Api.WebApi.Infrastructure.Extensions
           bool useDefaultHandlingResponse = true, // default hata yakalayıcı gösteri
           Func<HttpContext, Exception, Task> handleException = null) //istersen hataları yakalamak için func. girebilirsin.
         {
+
             app.UseExceptionHandler(options =>
             {
-                options.Run(context =>
+                app.UseExceptionHandler(options =>
                 {
-                    var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
+                    options.Run(context =>
+                    {
+                        var exceptionObject = context.Features.Get<IExceptionHandlerFeature>();
 
-                    if (!useDefaultHandlingResponse && handleException == null)
-                        throw new ArgumentException(nameof(handleException),
-                            $"{nameof(handleException)} cannot be null when {nameof(useDefaultHandlingResponse)} is false.");
+                        if (!useDefaultHandlingResponse && handleException == null)
+                            throw new ArgumentException(nameof(handleException),
+                                $"{nameof(handleException)} cannot be null when {nameof(useDefaultHandlingResponse)} is false.");
 
-                    if (!useDefaultHandlingResponse && handleException != null)
-                        return handleException(context, exceptionObject.Error);
+                        if (!useDefaultHandlingResponse && handleException != null)
+                            return handleException(context, exceptionObject.Error);
 
-                    return DefaultHandleException(context, exceptionObject.Error, includeExceptionDetails);
+                        return DefaultHandleException(context, exceptionObject.Error, includeExceptionDetails);
+                    });
                 });
             });
 

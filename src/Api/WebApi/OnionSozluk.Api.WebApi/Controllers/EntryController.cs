@@ -24,6 +24,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById([FromRoute] Guid id)
         {
+            //throw new Exception("Test Exception");
             var result = await _mediator.Send(new GetEntryDetailQuery(id, UserId));
             return Ok(result);
         }
