@@ -1,12 +1,13 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using OnionSozluk.Common.Events.User;
 using OnionSozluk.Common.ViewModels.RequestModels;
 
 namespace OnionSozluk.Api.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class UserController : ControllerBase
+    public class UserController : BaseController
     {
         private readonly IMediator _mediator;
 
@@ -34,6 +35,17 @@ namespace OnionSozluk.Api.WebApi.Controllers
         {
             var result = await _mediator.Send(request);
             return Ok(result);
+        }
+
+        [HttpPost("ChangePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommand command)
+        {
+            if (!command.UserId.HasValue)
+                command.UserId = UserId;
+
+            var guid = await _mediator.Send(command);
+
+            return Ok(guid);
         }
     }
 }

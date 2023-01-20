@@ -23,6 +23,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\Commands\User\ConfirmEmail\" />
     <Folder Include="Features\Queries\" />
   </ItemGroup>
 

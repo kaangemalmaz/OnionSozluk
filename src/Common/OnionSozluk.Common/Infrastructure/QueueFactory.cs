@@ -16,7 +16,7 @@ namespace OnionSozluk.Common.Infrastructure
             var channel = CreateBasicConsumer()
                             .EnsureExchange(exchangeName, exchangeType)
                             .EnsureQueue(queueName, exchangeName)
-                            .Model; // channel içindeki model gelmelidir.
+                            .Model; // channel içindeki model gelmelidir. Channel IModelden türer.
 
             // önce objeyi stringe çevir sonrasında bytes'a çevir.
             var body = Encoding.UTF8.GetBytes(JsonSerializer.Serialize(obj));
@@ -25,15 +25,14 @@ namespace OnionSozluk.Common.Infrastructure
                                  routingKey: queueName,
                                  basicProperties: null,
                                  body: body);
-
         }
 
         // Basit bir tüketici 
         public static EventingBasicConsumer CreateBasicConsumer()
         {
             var factory = new ConnectionFactory() { HostName = SozlukConstants.RabbitMQHost };
-            var connection = factory.CreateConnection();
-            var channel = connection.CreateModel();
+            var connection = factory.CreateConnection(); //connection oluştur.
+            var channel = connection.CreateModel(); // channel oluştur.
 
             return new EventingBasicConsumer(channel);
         }
