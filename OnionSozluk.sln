@@ -19,25 +19,25 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WebApi", "WebApi", "{304FE1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlazorWeb", "BlazorWeb", "{BC9EEFEC-9EBC-49CD-A629-662793FAAC50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Common", "src\Common\OnionSozluk.Common\OnionSozluk.Common.csproj", "{9DB92549-1FD2-4CCC-A160-BE87BE6C7536}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Common", "src\Common\OnionSozluk.Common\OnionSozluk.Common.csproj", "{9DB92549-1FD2-4CCC-A160-BE87BE6C7536}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Api.Domain", "src\Api\Core\OnionSozluk.Api.Domain\OnionSozluk.Api.Domain.csproj", "{31F9D976-691E-4C0E-959A-62C6DDF54A8D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Api.Domain", "src\Api\Core\OnionSozluk.Api.Domain\OnionSozluk.Api.Domain.csproj", "{31F9D976-691E-4C0E-959A-62C6DDF54A8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Api.Application", "src\Api\Core\OnionSozluk.Api.Application\OnionSozluk.Api.Application.csproj", "{1905D5A2-8977-4535-AB71-6630B7B9F654}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Api.Application", "src\Api\Core\OnionSozluk.Api.Application\OnionSozluk.Api.Application.csproj", "{1905D5A2-8977-4535-AB71-6630B7B9F654}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{584384E6-7B0E-4538-9A89-15507343A3D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Infrastructure.Persistence", "src\Api\Infrastructure\OnionSozluk.Infrastructure.Persistence\OnionSozluk.Infrastructure.Persistence.csproj", "{ED671639-B075-4DC0-B4C5-DC1E406277F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Infrastructure.Persistence", "src\Api\Infrastructure\OnionSozluk.Infrastructure.Persistence\OnionSozluk.Infrastructure.Persistence.csproj", "{ED671639-B075-4DC0-B4C5-DC1E406277F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Api.WebApi", "src\Api\WebApi\OnionSozluk.Api.WebApi\OnionSozluk.Api.WebApi.csproj", "{F3E3B55B-32F6-46E4-90E2-02E8EF9D7A16}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Api.WebApi", "src\Api\WebApi\OnionSozluk.Api.WebApi\OnionSozluk.Api.WebApi.csproj", "{F3E3B55B-32F6-46E4-90E2-02E8EF9D7A16}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Projections.FavoriteService", "src\Projections\OnionSozluk.Projections.FavoriteService\OnionSozluk.Projections.FavoriteService.csproj", "{88CB5AC4-2965-4B10-91B6-305C7C576D3A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Projections.FavoriteService", "src\Projections\OnionSozluk.Projections.FavoriteService\OnionSozluk.Projections.FavoriteService.csproj", "{88CB5AC4-2965-4B10-91B6-305C7C576D3A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Projections.UserService", "src\Projections\OnionSozluk.Projections.UserService\OnionSozluk.Projections.UserService.csproj", "{D828BFB2-9CC7-4B4D-9765-4FD0B4D22A5A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Projections.UserService", "src\Projections\OnionSozluk.Projections.UserService\OnionSozluk.Projections.UserService.csproj", "{D828BFB2-9CC7-4B4D-9765-4FD0B4D22A5A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.WebApp", "src\Clients\BlazorWeb\OnionSozluk.WebApp\OnionSozluk.WebApp.csproj", "{872CFE6C-8EAA-4275-A0F2-F3F415A0BAFC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.WebApp", "src\Clients\BlazorWeb\OnionSozluk.WebApp\OnionSozluk.WebApp.csproj", "{872CFE6C-8EAA-4275-A0F2-F3F415A0BAFC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnionSozluk.Projections.VoteService", "src\Projections\OnionSozluk.Projections.VoteService\OnionSozluk.Projections.VoteService.csproj", "{B6D9B8ED-F11E-4E30-8AC6-53C84A601432}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Projections.VoteService", "src\Projections\OnionSozluk.Projections.VoteService\OnionSozluk.Projections.VoteService.csproj", "{B6D9B8ED-F11E-4E30-8AC6-53C84A601432}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

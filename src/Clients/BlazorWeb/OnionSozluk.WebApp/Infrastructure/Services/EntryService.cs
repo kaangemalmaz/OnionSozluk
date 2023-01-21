@@ -17,7 +17,7 @@ namespace OnionSozluk.WebApp.Infrastructure.Services
 
         public async Task<List<GetEntriesViewModel>> GetEntries()
         {
-            var result = await client.GetFromJsonAsync<List<GetEntriesViewModel>>("/api/entry?todayEntries=false&count=30");
+            var result = await client.GetFromJsonAsync<List<GetEntriesViewModel>>("/api/entry/GetEntries?todayEntries=false&count=30");
             return result;
         }
 

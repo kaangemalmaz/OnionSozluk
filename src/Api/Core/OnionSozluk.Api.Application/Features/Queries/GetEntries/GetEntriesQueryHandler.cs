@@ -28,7 +28,7 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetEntries
 
 
             query = query.Include(i => i.EntryComments)
-                         .OrderBy(i => new Guid()) //gelişi güzel sırala demektir.
+                         .OrderBy(i => Guid.NewGuid()) //gelişi güzel sırala demektir.
                          .Take(request.Count);
 
 
