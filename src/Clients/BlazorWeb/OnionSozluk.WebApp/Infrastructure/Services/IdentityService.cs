@@ -15,10 +15,6 @@ namespace OnionSozluk.WebApp.Infrastructure.Services
 {
     public class IdentityService : IIdentityService
     {
-        private JsonSerializerOptions defaultJsonOpt => new JsonSerializerOptions()
-        {
-            PropertyNameCaseInsensitive = true
-        };
 
         private readonly HttpClient httpClient;
         private readonly ISyncLocalStorageService syncLocalStorageService;
