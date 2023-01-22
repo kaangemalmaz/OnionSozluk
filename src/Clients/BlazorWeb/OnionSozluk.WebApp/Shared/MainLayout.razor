@@ -37,20 +37,21 @@
             </ul>
         }
     </div>
-    @*<AuthorizeView>
-    <Authorized>
-    <div class="top-nav">
-    <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Create Entry" @onclick="NavigateCreateEntryPage" />
-    <input type="button" class="form-control btn-success btn-sozluk w-auto" value="ME" @onclick="NavigateMEPage" />
-    <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Logout" @onclick="NavigateLogoutPage" />
-    </div>
-    </Authorized>
-    <NotAuthorized>*@
-    <div class="top-nav">
-        <input type="button" class="form-control btn-success w-auto text-center" value="Login" @onclick="NavigateLoginPage" />
-    </div>
-    @*    </NotAuthorized>
-    </AuthorizeView>*@
+    @* // INCELENECEK *@
+    <AuthorizeView>
+        <Authorized>
+            <div class="top-nav">
+                <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Create Entry" @onclick="NavigateCreateEntryPage" />
+                <input type="button" class="form-control btn-success btn-sozluk w-auto" value="ME" @onclick="NavigateMEPage" />
+                <input type="button" class="form-control btn-success btn-sozluk w-auto" value="Logout" @onclick="NavigateLogoutPage" />
+            </div>
+        </Authorized>
+        <NotAuthorized>
+            <div class="top-nav">
+                <input type="button" class="form-control btn-success w-auto text-center" value="Login" @onclick="NavigateLoginPage" />
+            </div>
+        </NotAuthorized>
+    </AuthorizeView>
     @*// TODO burası veri tabanından gelecek şekilde yapılacak*@
     <div class="sub-nav">
         <a class="sub-nav-item active">bugün</a>

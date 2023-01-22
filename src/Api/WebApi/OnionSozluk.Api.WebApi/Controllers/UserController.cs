@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnionSozluk.Api.Application.Features.Queries.GetUserDetail;
 using OnionSozluk.Common.Events.User;
@@ -39,6 +40,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpPost("Register")]
+        //[Authorize]
         public async Task<IActionResult> Create([FromBody] CreateUserCommand request)
         {
             var result = await _mediator.Send(request);
@@ -46,6 +48,8 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpPost("Update")]
+        [Authorize]
+
         public async Task<IActionResult> Update([FromBody] UpdateUserCommand request)
         {
             var result = await _mediator.Send(request);
@@ -53,6 +57,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpPost("ChangePassword")]
+        [Authorize]
         public async Task<IActionResult> ChangePassword([FromBody] ChangeUserPasswordCommand command)
         {
             if (!command.UserId.HasValue)

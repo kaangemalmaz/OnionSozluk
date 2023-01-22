@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnionSozluk.Api.Application.Features.Commands.Entry.DeleteVote;
 using OnionSozluk.Api.Application.Features.Commands.EntryComment.DeleteVote;
@@ -9,6 +10,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class VoteController : BaseController
     {
         private readonly IMediator mediator;

@@ -1,5 +1,6 @@
 using FluentValidation.AspNetCore;
 using OnionSozluk.Api.Application.Extensions;
+using OnionSozluk.Api.WebApi.Infrastructure.ActionFilters;
 using OnionSozluk.Api.WebApi.Infrastructure.Extensions;
 using OnionSozluk.Infrastructure.Persistence.Extensions;
 
@@ -7,7 +8,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers().AddFluentValidation();
+builder.Services
+    .AddControllers(opt => opt.Filters.Add<ValidateModelStateFilter>())
+    .AddFluentValidation()
+    .ConfigureApiBehaviorOptions(opt =>
+    {
+        opt.SuppressModelStateInvalidFilter = true; // bizim verdiðimiz filteri çalýþtýr demektir.
+    });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OnionSozluk.Api.Application.Features.Queries.GetEntries;
 using OnionSozluk.Api.Application.Features.Queries.GetEntryComments;
@@ -37,6 +38,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpGet("UserEntries")]
+        [Authorize]
         public async Task<IActionResult> GetUserEntries(string userName, Guid userId, int page, int pageSize)
         {
             //if (userId == Guid.Empty && string.IsNullOrEmpty(userName))
@@ -54,6 +56,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpPost("CreateEntry")]
+        [Authorize]
         public async Task<IActionResult> CreateEntry([FromBody] CreateEntryCommand command)
         {
             command.CreatedById ??= UserId;
@@ -64,6 +67,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
         }
 
         [HttpPost("CreateEntryComment")]
+        [Authorize]
         public async Task<IActionResult> CreateEntryComment([FromBody] CreateEntryCommentCommand command)
         {
             command.CreatedById ??= UserId;
