@@ -19,7 +19,7 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetUserEntries
         public async Task<PagedViewModel<GetUserEntriesDetailViewModel>> Handle(GetUserEntriesQuery request, CancellationToken cancellationToken)
         {
             var query = _entryRepository.AsQueryable();
-            if (request.UserId.HasValue)
+            if (request.UserId.HasValue && request.UserId != Guid.Empty)
                 query = query.Where(i => i.CreatedById == request.UserId);
             else if (!String.IsNullOrEmpty(request.UserName))
                 query = query.Where(i => i.CreatedBy.UserName == request.UserName);

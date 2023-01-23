@@ -31,7 +31,7 @@ namespace OnionSozluk.WebApp.Infrastructure.Services
 
         public async Task<bool> UpdateUser(UserDetailViewModel user)
         {
-            var res = await client.PostAsJsonAsync($"/api/User/update", user);
+            var res = await client.PostAsJsonAsync($"/api/User/Update", user);
             return res.IsSuccessStatusCode;
         }
 

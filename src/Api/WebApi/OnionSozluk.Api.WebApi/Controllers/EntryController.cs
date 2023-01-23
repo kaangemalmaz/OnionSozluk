@@ -39,12 +39,12 @@ namespace OnionSozluk.Api.WebApi.Controllers
 
         [HttpGet("UserEntries")]
         [Authorize]
-        public async Task<IActionResult> GetUserEntries(string userName, Guid userId, int page, int pageSize)
+        public async Task<IActionResult> GetUserEntries(string? userName, Guid userId, int page, int pageSize)
         {
-            //if (userId == Guid.Empty && string.IsNullOrEmpty(userName))
-            //    userId = UserId.Value;
+            if (userId == Guid.Empty && string.IsNullOrEmpty(userName))
+                userId = UserId.Value;
 
-            var result = await _mediator.Send(new GetUserEntriesQuery(userId, userName, page, pageSize));
+            var result = await _mediator.Send(new GetUserEntriesQuery(userId: userId, userName: userName, page, pageSize));
             return Ok(result);
         }
 

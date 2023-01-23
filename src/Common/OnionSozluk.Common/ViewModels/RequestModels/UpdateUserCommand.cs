@@ -9,6 +9,5 @@ namespace OnionSozluk.Common.ViewModels.RequestModels
         public string LastName { get; set; }
         public string EmailAddress { get; set; }
         public string UserName { get; set; }
-        public string Password { get; set; }
     }
 }

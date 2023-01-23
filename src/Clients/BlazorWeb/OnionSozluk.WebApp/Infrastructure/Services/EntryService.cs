@@ -35,7 +35,7 @@ namespace OnionSozluk.WebApp.Infrastructure.Services
 
         public async Task<PagedViewModel<GetEntryDetailViewModel>> GetProfilePageEntries(int page, int pageSize, string userName = null)
         {
-            var result = await client.GetFromJsonAsync<PagedViewModel<GetEntryDetailViewModel>>($"/api/Entry/UserEntries?userName={userName}&page={page}&pageSize={pageSize}");
+            var result = await client.GetFromJsonAsync<PagedViewModel<GetEntryDetailViewModel>>($"/api/Entry/UserEntries?username={userName}&page={page}&pageSize={pageSize}");
             return result;
         }
 

@@ -25,7 +25,7 @@ namespace OnionSozluk.Api.WebApi.Controllers
             return Ok(result);
         }
 
-        [HttpGet("{username}")]
+        [HttpGet("username/{username}")]
         public async Task<IActionResult> GetUserDetailByUsername([FromRoute] string username)
         {
             var result = await _mediator.Send(new GetUserDetailQuery { UserId = Guid.Empty, UserName = username });

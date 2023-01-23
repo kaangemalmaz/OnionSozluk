@@ -1,0 +1,71 @@
+﻿@page "/profile/{UserName}"
+@page "/profile/{UserId:guid}"
+@page "/me"
+@using Blazored.LocalStorage
+@using OnionSozluk.WebApp.Infrastructure.Extensions
+
+
+<OnionSozluk.WebApp.Pages.UserPages.Components.UserProfileDetailComponent UserId="@UserId" UserName="@UserName" />
+
+@if (entries is not null)
+{
+    foreach (var entry in entries.Results)
+    {
+        <EntryViewerComponent Entry="@entry" MyEntries="true" /> //anasayfada gözükenler benim sayfa için göster.
+        <br />
+    }
+
+    <br />
+
+    <PaginationComponent TotalPage="@entries.pageInfo.TotalPageCount"
+                     CurrentPage="@currentPage"
+                     OnPageChanged="@OnPageChanged" />
+}
+else
+{
+
+    <br />
+    <br />
+
+    <div class="alert alert-danger">
+        Hiç bir paylaşım bulunmamaktadır.
+    </div>
+}
+
+
+@code {
+
+    [Inject]
+    IEntryService entryService { get; set; }
+
+    [Inject]
+    ILocalStorageService localStorageService { get; set; }
+
+    PagedViewModel<GetEntryDetailViewModel> entries;
+
+    [Parameter]
+    public string UserName { get; set; }
+
+    [Parameter]
+    public Guid UserId { get; set; }
+
+
+    private int currentPage = 1;
+
+
+    public async Task OnPageChanged(int pageNumber)
+    {
+        entries = await entryService.GetProfilePageEntries(pageNumber, 20, UserName);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(UserName == null || UserName == "")
+        {
+            UserName = await localStorageService.GetUserName();
+        }
+
+        entries = await entryService.GetProfilePageEntries(currentPage, 20, UserName);
+    }
+
+}
