@@ -17,10 +17,11 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetEntryDetail
         public async Task<GetEntryDetailViewModel> Handle(GetEntryDetailQuery request, CancellationToken cancellationToken)
         {
             var query = _entryRepository.AsQueryable();
+
             query = query.Include(i => i.EntryFavorites)
-                .Include(i => i.CreatedBy)
-                .Include(i => i.EntryVotes)
-                .Where(i => i.Id == request.EntryId);
+                         .Include(i => i.CreatedBy)
+                         .Include(i => i.EntryVotes)
+                         .Where(i => i.Id == request.EntryId);
 
             var list = query.Select(i => new GetEntryDetailViewModel()
             {
@@ -31,15 +32,13 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetEntryDetail
                 FavoritedCount = i.EntryFavorites.Count,
                 CreatedDate = i.CreateDate,
                 CreatedByUserName = i.CreatedBy.UserName,
-                VoteType = request.UserId.HasValue && i.EntryVotes.Any(j => j.CreateById == request.UserId)
-                ? i.EntryVotes.FirstOrDefault(j => j.CreateById == request.UserId).VoteType
-                : Common.ViewModels.VoteType.None,
-
+                VoteType =
+                        request.UserId.HasValue && i.EntryVotes.Any(j => j.CreateById == request.UserId)
+                        ? i.EntryVotes.FirstOrDefault(j => j.CreateById == request.UserId).VoteType
+                        : Common.ViewModels.VoteType.None
             });
 
             return await list.FirstOrDefaultAsync(cancellationToken: cancellationToken);
-
-
         }
     }
 }

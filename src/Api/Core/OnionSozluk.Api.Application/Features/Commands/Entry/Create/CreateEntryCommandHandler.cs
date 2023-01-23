@@ -1,10 +1,11 @@
 ﻿using AutoMapper;
+using MediatR;
 using OnionSozluk.Api.Application.Interfaces.Repositories;
 using OnionSozluk.Common.ViewModels.RequestModels;
 
 namespace OnionSozluk.Api.Application.Features.Commands.Entry.Create
 {
-    public class CreateEntryCommandHandler
+    public class CreateEntryCommandHandler : IRequestHandler<CreateEntryCommand, Guid>
     {
         private readonly IEntryRepository entryRepository;
         private readonly IMapper mapper;

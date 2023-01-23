@@ -16,11 +16,11 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetEntryComments
             _entryCommentRepository = entryCommentRepository;
         }
 
-        public Task<PagedViewModel<GetEntryCommentsViewModel>> Handle(GetEntryCommentsQuery request, CancellationToken cancellationToken)
+        public async Task<PagedViewModel<GetEntryCommentsViewModel>> Handle(GetEntryCommentsQuery request, CancellationToken cancellationToken)
         {
             var query = _entryCommentRepository.AsQueryable();
 
-            query.Include(p => p.EntryCommentFavorites)
+            query = query.Include(p => p.EntryCommentFavorites)
                  .Include(p => p.EntryCommentVotes)
                  .Include(p => p.CreatedBy)
                  .Where(p => p.EntryId == request.EntryId);
@@ -39,7 +39,7 @@ namespace OnionSozluk.Api.Application.Features.Queries.GetEntryComments
             });
 
 
-            var entities = list.GetPaged<GetEntryCommentsViewModel>(request.Page, request.PageSize);
+            var entities = await list.GetPaged<GetEntryCommentsViewModel>(request.Page, request.PageSize);
             return entities;
 
         }
