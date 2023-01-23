@@ -39,13 +39,13 @@
     {
         if (args.IsFaved)
         {
-            await favService.CreateEntryFav(args.EntryId.Value);
+            await favService.CreateEntryCommentFav(args.EntryId.Value);
             EntryComment.IsFavorited = true;
             EntryComment.FavoritedCount++;
         }
         else
         {
-            await favService.DeleteEntryFav(args.EntryId.Value);
+            await favService.DeleteEntryCommentFav(args.EntryId.Value);
             EntryComment.IsFavorited = false;
             EntryComment.FavoritedCount--;
         }
