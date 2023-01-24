@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using OnionSozluk.Api.Application.Features.Commands.User.ConfirmEmail;
 using OnionSozluk.Api.Application.Features.Queries.GetUserDetail;
 using OnionSozluk.Common.Events.User;
 using OnionSozluk.Common.ViewModels.RequestModels;
@@ -68,7 +69,14 @@ namespace OnionSozluk.Api.WebApi.Controllers
             return Ok(guid);
         }
 
+        [HttpPost]
+        [Route("Confirm")]
+        public async Task<IActionResult> ConfirmEMail(Guid id)
+        {
+            var guid = await _mediator.Send(new ConfirmEmailCommand() { ConfirmationId = id });
 
+            return Ok(guid);
+        }
 
     }
 }

@@ -23,8 +23,4 @@
     <ProjectReference Include="..\OnionSozluk.Api.Domain\OnionSozluk.Api.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Features\Commands\User\ConfirmEmail\" />
-  </ItemGroup>
-
 </Project>
