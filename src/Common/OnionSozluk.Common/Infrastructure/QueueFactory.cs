@@ -5,6 +5,8 @@ using System.Text.Json;
 
 namespace OnionSozluk.Common.Infrastructure
 {
+
+    // TODO daha okunakli yapılacak.
     public static class QueueFactory
     {
         public static void SendMessageToExchange(string exchangeName,
@@ -13,6 +15,7 @@ namespace OnionSozluk.Common.Infrastructure
                                                  object obj)
         {
             // tüketici için channel oluştururken exchange ve queue oluştu mu kontrol et!
+            // create basic consumer yerine connection, exchange ve queue yapıları verilebilir.
             var channel = CreateBasicConsumer()
                             .EnsureExchange(exchangeName, exchangeType)
                             .EnsureQueue(queueName, exchangeName)
@@ -30,11 +33,13 @@ namespace OnionSozluk.Common.Infrastructure
         // Basit bir tüketici 
         public static EventingBasicConsumer CreateBasicConsumer()
         {
+            // aslında burası sadece connection bağlantısını ve channeli oluşturuyor.
+
             var factory = new ConnectionFactory() { HostName = SozlukConstants.RabbitMQHost };
             var connection = factory.CreateConnection(); //connection oluştur.
             var channel = connection.CreateModel(); // channel oluştur.
 
-            return new EventingBasicConsumer(channel);
+            return new EventingBasicConsumer(channel); //burası consumer için kritik sadece.
         }
 
         // İlk olarak emin olmak için exchange üretildi mi?
