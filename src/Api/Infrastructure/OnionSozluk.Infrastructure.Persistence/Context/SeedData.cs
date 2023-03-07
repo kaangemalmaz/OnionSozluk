@@ -33,11 +33,11 @@ namespace OnionSozluk.Infrastructure.Persistence.Context
             var context = new OnionSozlukContext(dbContextBuilder.Options); // 2.const. çağırıyoruz.
 
             //burası eğer seed datayı kaldırmayı unutursan diye koruma amaçlı koyulmuştur.
-            //if (context.Users.Any())
-            //{
-            //    await Task.CompletedTask;
-            //    return;
-            //}
+            if (context.Users.Any())
+            {
+                await Task.CompletedTask;
+                return;
+            }
 
             var users = GetUsers();
             var userIds = users.Select(i => i.Id); //burada userin idlerini çekiyoruz çünkü entry ve entrycommentde kullanacağız.

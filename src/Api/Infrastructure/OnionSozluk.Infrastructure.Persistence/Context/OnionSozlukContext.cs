@@ -8,11 +8,6 @@ namespace OnionSozluk.Infrastructure.Persistence.Context
     {
         public const string DEFAULT_SCHEMA = "dbo";
 
-        public OnionSozlukContext()
-        {
-            // 2.bir çağırma şekli üretmek için yapılır. Yani bir option olarak sunulur.
-            // api ayağa kalmadan direk olarak persistence dan migration geçilmesi buna bir örnektir.
-        }
         public OnionSozlukContext(DbContextOptions options) : base(options)
         {
             //dbcontextin const. doldurursun!
@@ -20,8 +15,8 @@ namespace OnionSozluk.Infrastructure.Persistence.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            // Eğer biri dbcontexi parametresi constructor üretmek isterse ve o şekilde bağlanmak istersen diye yapılan işlemdir.
-            // burada eğer configurasyon geçilmemişse bu şekilde configurasyon geçebilirsin anlamına gelmektedi.r
+            // EF Core Tool'unu yapılandırmak için kullandığımız metoddur.
+            // Provider, ConnectionString, Lazy loading, Tüm temel yapılandırmaları sağlar. toola dair.
             if (!optionsBuilder.IsConfigured)
             {
                 var connStr = "Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=OnionSozlukDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False";

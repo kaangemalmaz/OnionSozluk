@@ -21,8 +21,8 @@ namespace OnionSozluk.Infrastructure.Persistence.Extensions
             });
 
             // burası sadece seed data için 1 kere çalışacak olan kısımdır.
-            //var seedData = new SeedData();
-            //seedData.SeedAsync(configuration).GetAwaiter().GetResult(); // burayı bekle sonucunu al demektir. 
+            var seedData = new SeedData();
+            seedData.SeedAsync(configuration).GetAwaiter().GetResult(); // burayı bekle sonucunu al demektir. 
 
 
             // injection
