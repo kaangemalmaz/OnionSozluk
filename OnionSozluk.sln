@@ -39,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.WebApp", "src\C
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnionSozluk.Projections.VoteService", "src\Projections\OnionSozluk.Projections.VoteService\OnionSozluk.Projections.VoteService.csproj", "{B6D9B8ED-F11E-4E30-8AC6-53C84A601432}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{35F16C87-8860-42DC-B3A8-23E526238E07}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -81,6 +83,10 @@ Global
 		{B6D9B8ED-F11E-4E30-8AC6-53C84A601432}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6D9B8ED-F11E-4E30-8AC6-53C84A601432}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6D9B8ED-F11E-4E30-8AC6-53C84A601432}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35F16C87-8860-42DC-B3A8-23E526238E07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35F16C87-8860-42DC-B3A8-23E526238E07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35F16C87-8860-42DC-B3A8-23E526238E07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35F16C87-8860-42DC-B3A8-23E526238E07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

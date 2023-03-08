@@ -1,0 +1,59 @@
+version: '3.4'
+services:
+  onion_mssqldb:
+    container_name: onion_mssqldb
+    environment:
+      - ACCEPT_EULA=Y
+      - MSSQL_SA_PASSWORD=Password12*
+    ports:
+      - "1433:1433"
+    volumes:
+      - onion_mssqldb_vol:/var/opt/mssql
+  onion_rabbitmq:
+    container_name: onion_rabbitmq
+    restart: always
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+  onionsozluk.api.webapi:
+    container_name: "onionsozluk.api.webapi"
+    restart: on-failure
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - OnionSozlukDbConnectionDbContext=Server=onion_mssqldb,1433;Database=onion_sozluk;User Id=sa;Password=Password12*;TrustServerCertificate=true
+    ports:
+      - "5001:80"
+    depends_on:
+      - onion_rabbitmq
+      - onion_mssqldb
+  onionsozluk.webapp:
+    container_name: "onionwebapp"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "5000:80"
+  onionsozluk.projections.favoriteservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ConnectionStrings:SqlServer=Server=onion_mssqldb,1433;Database=onion_sozluk;User Id=sa;Password=Password12*;TrustServerCertificate=true
+    depends_on:
+      - onion_rabbitmq
+      - onion_mssqldb
+    restart: on-failure
+  onionsozluk.projections.userservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ConnectionStrings:SqlServer=Server=onion_mssqldb,1433;Database=onion_sozluk;User Id=sa;Password=Password12*;TrustServerCertificate=true
+    depends_on:
+      - onion_rabbitmq
+      - onion_mssqldb
+    restart: on-failure
+  onionsozluk.projections.voteservice:
+    environment:
+      - DOTNET_ENVIRONMENT=Development
+      - ConnectionStrings:SqlServer=Server=onion_mssqldb,1433;Database=onion_sozluk;User Id=sa;Password=Password12*;TrustServerCertificate=true
+    depends_on:
+      - onion_rabbitmq
+      - onion_mssqldb
+    restart: on-failure
+  

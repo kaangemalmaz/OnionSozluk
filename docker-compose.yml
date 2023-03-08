@@ -1,0 +1,37 @@
+version: '3.4'
+services:
+  onionsozluk.api.webapi:
+    image: onionsozlukapiwebapi
+    build:
+      context: .
+      dockerfile: src/Api/WebApi/OnionSozluk.Api.WebApi/Dockerfile
+  onionsozluk.webapp:
+    image: onionsozlukwebapp
+    build:
+      context: .
+      dockerfile: src/Clients/BlazorWeb/OnionSozluk.WebApp/Dockerfile
+  onionsozluk.projections.favoriteservice:
+    image: onionsozlukprojectionsfavoriteservice
+    build:
+      context: .
+      dockerfile: src/Projections/OnionSozluk.Projections.FavoriteService/Dockerfile
+  onionsozluk.projections.userservice:
+    image: onionsozlukprojectionsuserservice
+    build:
+      context: .
+      dockerfile: src/Projections/OnionSozluk.Projections.UserService/Dockerfile
+  onionsozluk.projections.voteservice:
+    image: onionsozlukprojectionsvoteservice
+    build:
+      context: .
+      dockerfile: src/Projections/OnionSozluk.Projections.VoteService/Dockerfile
+  onion_mssqldb:
+    container_name: onion_mssqldb
+    image: mcr.microsoft.com/mssql/server:2019-latest
+  onion_rabbitmq:
+    container_name: onion_rabbitmq
+    image: rabbitmq:3.11.9-management
+volumes:
+  onion_rabbitmq_vol:
+  onion_mssqldb_vol:
+

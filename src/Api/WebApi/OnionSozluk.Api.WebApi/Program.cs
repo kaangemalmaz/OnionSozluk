@@ -1,8 +1,11 @@
 using FluentValidation.AspNetCore;
+using Microsoft.EntityFrameworkCore;
 using OnionSozluk.Api.Application.Extensions;
 using OnionSozluk.Api.WebApi.Infrastructure.ActionFilters;
 using OnionSozluk.Api.WebApi.Infrastructure.Extensions;
 using OnionSozluk.Infrastructure.Persistence.Extensions;
+using OnionSozluk.Infrastructure.Persistence.Context;
+using Microsoft.Extensions.Configuration;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,7 +16,7 @@ builder.Services
     .AddFluentValidation()
     .ConfigureApiBehaviorOptions(opt =>
     {
-        opt.SuppressModelStateInvalidFilter = true; // bizim verdiðimiz filteri çalýþtýr demektir.
+        opt.SuppressModelStateInvalidFilter = true; // bizim verdiï¿½imiz filteri ï¿½alï¿½ï¿½tï¿½r demektir.
     });
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -27,13 +30,32 @@ builder.Services.AddApplicationRegistration();
 //Addcors
 builder.Services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
 {
-    builder.AllowAnyHeader()
+    builder
+    .AllowAnyHeader()
     .AllowAnyOrigin()
     .AllowAnyMethod();
 }));
 
 
 var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
+{
+    var sp = scope.ServiceProvider;
+
+    var context = sp.GetRequiredService<OnionSozlukContext>();
+
+    if (context.Database.GetPendingMigrations().Any())
+    {
+        context.Database.Migrate();
+
+        //var seedData = new SeedData();
+        //seedData.SeedAsync(builder.Configuration).GetAwaiter().GetResult();
+
+        SeedData.SeedAsync(builder.Configuration).GetAwaiter().GetResult();
+    }
+
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
@@ -44,7 +66,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-app.ConfigureExceptionHandling(app.Environment.IsDevelopment()); //eðer development ise detaylarý göster.
+app.ConfigureExceptionHandling(app.Environment.IsDevelopment()); //eï¿½er development ise detaylarï¿½ gï¿½ster.
 
 app.UseAuthentication();
 app.UseAuthorization();

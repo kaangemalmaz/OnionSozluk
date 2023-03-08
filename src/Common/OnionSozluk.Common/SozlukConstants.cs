@@ -2,7 +2,12 @@
 {
     public class SozlukConstants
     {
-        public const string RabbitMQHost = "localhost";
+        #if(DEBUG)
+            public const string RabbitMQHost = "localhost";
+        #else
+            public const string RabbitMQHost = "onion_rabbitmq";
+        #endif
+
         public const string DefaultExchangeType = "direct";
 
         // USER

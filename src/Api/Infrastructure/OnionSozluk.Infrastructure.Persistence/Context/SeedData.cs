@@ -6,7 +6,7 @@ using OnionSozluk.Common.Infrastructure;
 
 namespace OnionSozluk.Infrastructure.Persistence.Context
 {
-    public class SeedData
+    public static class SeedData
     {
         // md5 geri dönülemez bir algoritma yaratıyor.
         private static List<User> GetUsers()
@@ -26,7 +26,7 @@ namespace OnionSozluk.Infrastructure.Persistence.Context
             return result;
         }
 
-        public async Task SeedAsync(IConfiguration configuration)
+        public static async Task SeedAsync(IConfiguration configuration)
         {
             var dbContextBuilder = new DbContextOptionsBuilder();
             dbContextBuilder.UseSqlServer(configuration["OnionSozlukDbConnectionDbContext"]);
@@ -44,7 +44,7 @@ namespace OnionSozluk.Infrastructure.Persistence.Context
 
             await context.Users.AddRangeAsync(users);
 
-
+            
             var guids = Enumerable.Range(0, 150).Select(i => Guid.NewGuid()).ToList();
             int counter = 0; // global counter yapılması
 
@@ -70,6 +70,21 @@ namespace OnionSozluk.Infrastructure.Persistence.Context
 
             await context.EntryComments.AddRangeAsync(comments);
             await context.SaveChangesAsync();
+
+            var user = new Faker<User>("tr")
+                    .RuleFor(i => i.Id, i => Guid.NewGuid())
+                    .RuleFor(i => i.CreateDate,
+                                i => i.Date.Between(DateTime.Now.AddDays(-100), DateTime.Now))
+                    .RuleFor(i => i.FirstName, i => "akg")
+                    .RuleFor(i => i.LastName, i => "akg")
+                    .RuleFor(i => i.EmailAddress, i => "akgdeneme@gmail.com")
+                    .RuleFor(i => i.UserName, i => "akgdeneme@gmail.com")
+                    .RuleFor(i => i.Password, i => PasswordEncryptor.Encrpt("123456789"))
+                    .RuleFor(i => i.EmailConfirmed, i => true)
+                .Generate();
+
+            context.Users.Add(user);
+            context.SaveChanges();
         }
     }
 }

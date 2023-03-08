@@ -8,6 +8,7 @@ using OnionSozluk.WebApp.Infrastructure.Services;
 using OnionSozluk.WebApp.Infrastructure.Services.Interfaces;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
+
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
@@ -15,7 +16,8 @@ builder.Services.AddScoped<AuthTokenHandler>();
 
 builder.Services.AddHttpClient("WebApiClient", client =>
 {
-    client.BaseAddress = new Uri("https://localhost:5001");
+    client.BaseAddress = new Uri("http://localhost:5001");
+    //client.BaseAddress = new Uri(builder.Configuration["RequestUrl"]);
 })
     .AddHttpMessageHandler<AuthTokenHandler>(); // her httpclientda header authorizationa ekleme yapar.
 
@@ -25,7 +27,7 @@ builder.Services.AddScoped(sp =>
     return clientFactory.CreateClient("WebApiClient");
 });
 
-//üsttekiler ile ayný iþi yapar ama yapýnýn nasýl iþlediðinin ayrýtýsý yukarýdadýr.
+//ï¿½sttekiler ile aynï¿½ iï¿½i yapar ama yapï¿½nï¿½n nasï¿½l iï¿½lediï¿½inin ayrï¿½tï¿½sï¿½ yukarï¿½dadï¿½r.
 //builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 
 
@@ -36,7 +38,7 @@ builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddTransient<IIdentityService, IdentityService>();
 
 builder.Services.AddScoped<AuthenticationStateProvider, AuthStateProvider>();
-builder.Services.AddAuthorizationCore(); // authentication mekanizmasý
+builder.Services.AddAuthorizationCore(); // authentication mekanizmasï¿½
 
 builder.Services.AddBlazoredLocalStorage();
 
