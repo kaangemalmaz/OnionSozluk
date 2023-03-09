@@ -1,0 +1,18 @@
+1) Create external networks so to add external containers in
+
+docker network create blazor_backend --attachable
+
+--attachable baska networklere baðlanabilir anlamýna gelmektedir.
+
+docker network create blazor_frontend --attachable
+
+
+2) Add external container into the newly created networks
+// blazor_backend networküne burada verilen iki containeri baðla demektir.
+
+docker network connect blazor_backend onion-mssqldb
+docker network connect blazor_backend rabbitmq
+
+
+3) replace rabbitmq host name constants with container name (rabbitmq)
+4) replace db host name with container name onion-mssqldb

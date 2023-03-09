@@ -16,8 +16,11 @@ builder.Services.AddScoped<AuthTokenHandler>();
 
 builder.Services.AddHttpClient("WebApiClient", client =>
 {
-    client.BaseAddress = new Uri("http://localhost:5001");
-    //client.BaseAddress = new Uri(builder.Configuration["RequestUrl"]);
+    // web assembly bilgisayarda yani localhostda çalışır bu sebeple biz buraya getirip container ismini yazamıyoruz. 
+    // Eğer yazarsak bizim web assemblymiz bu containeri çözümleyemeyecektir.
+    //client.BaseAddress = new Uri("http://localhost:5001");
+    string requestUrl = builder.Configuration["RequestUrl"];
+    client.BaseAddress = new Uri(requestUrl);
 })
     .AddHttpMessageHandler<AuthTokenHandler>(); // her httpclientda header authorizationa ekleme yapar.
 

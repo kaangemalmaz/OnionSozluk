@@ -25,13 +25,10 @@ services:
     build:
       context: .
       dockerfile: src/Projections/OnionSozluk.Projections.VoteService/Dockerfile
-  onion_mssqldb:
-    container_name: onion_mssqldb
-    image: mcr.microsoft.com/mssql/server:2019-latest
-  onion_rabbitmq:
-    container_name: onion_rabbitmq
-    image: rabbitmq:3.11.9-management
-volumes:
-  onion_rabbitmq_vol:
-  onion_mssqldb_vol:
-
+networks:
+  blazor_backend:
+    driver: bridge
+    external: true
+  blazor_frontend:
+    driver: bridge
+    external: true

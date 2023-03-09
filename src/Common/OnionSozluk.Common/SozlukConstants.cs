@@ -5,7 +5,8 @@
         #if(DEBUG)
             public const string RabbitMQHost = "localhost";
         #else
-            public const string RabbitMQHost = "onion_rabbitmq";
+            //public const string RabbitMQHost = "onion_rabbitmq";
+            public const string RabbitMQHost = "rabbitmq_external";
         #endif
 
         public const string DefaultExchangeType = "direct";
